@@ -1,3 +1,8 @@
+import java.util.List;
+import java.util.Stack;
+
+import javax.swing.tree.TreeNode;
+
 /*
  * @lc app=leetcode.cn id=236 lang=java
  *
@@ -24,8 +29,23 @@
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        // 就是基本不给本地测试的机会，不可能有debugger让你用的呗
-        // 妈的。我就来做这个光搜，加深度搜？
+        // how to?
+        // 这个用个啥么遍历方式，然后是不是就有解了？
+        
+        return null;
+    }
+
+    // 那个方法太奇葩了的。
+    private List<TreeNode> getTreeList(TreeNode root, TreeNode p) {
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while(true) {
+            TreeNode tmp = stack.peek();
+            if(root.left != null) {
+                // 深度遍历的呗。找到x的呗。这个我怎么说，我应该练习下我深度遍历的技术的呗。
+                // 草泥马的，老子不会
+            }
+        }
     }
 }
 // @lc code=end

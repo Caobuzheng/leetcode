@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SwapPairs",
+            "request": "launch",
+            "mainClass": "SwapPairs"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MyAtoi",
+            "request": "launch",
+            "mainClass": "MyAtoi"
+        }
+    ]
+}

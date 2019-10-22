@@ -2,15 +2,38 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - SwapPairs",
+            "name": "CodeLens (Launch) - FUCK",
             "request": "launch",
-            "mainClass": "SwapPairs"
+            "mainClass": "FUCK",
+            "projectName": "leetcode_359ed258"
         },
         {
             "type": "java",
-            "name": "CodeLens (Launch) - MyAtoi",
+            "name": "CodeLens (Launch) - CountPrimes",
             "request": "launch",
-            "mainClass": "MyAtoi"
+            "mainClass": "CountPrimes",
+            "projectName": "leetcode_359ed258"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - NumDecodingsDp",
+            "request": "launch",
+            "mainClass": "NumDecodingsDp",
+            "projectName": "leetcode_359ed258"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - NumDecodings",
+            "request": "launch",
+            "mainClass": "NumDecodings",
+            "projectName": "leetcode_359ed258"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PermuteUnique",
+            "request": "launch",
+            "mainClass": "PermuteUnique",
+            "projectName": "leetcode_359ed258"
         }
     ]
 }

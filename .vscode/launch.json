@@ -2,6 +2,24 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - ThreeSumMulti",
+            "request": "launch",
+            "mainClass": "ThreeSumMulti"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MinAddToMakeValid",
+            "request": "launch",
+            "mainClass": "MinAddToMakeValid"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SortArrayByParityII",
+            "request": "launch",
+            "mainClass": "SortArrayByParityII"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - FUCK",
             "request": "launch",
             "mainClass": "FUCK",

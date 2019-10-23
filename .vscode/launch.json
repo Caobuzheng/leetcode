@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - ConvertBST",
+            "request": "launch",
+            "mainClass": "ConvertBST",
+            "projectName": "leetcode_359ed258"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MobeTest",
+            "request": "launch",
+            "mainClass": "MobeTest",
+            "projectName": "leetcode_359ed258"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FindDisappearedNumbers",
+            "request": "launch",
+            "mainClass": "FindDisappearedNumbers",
+            "projectName": "leetcode_359ed258"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - FUCK",
             "request": "launch",
             "mainClass": "FUCK",

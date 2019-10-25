@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - FindCircleNum",
+            "request": "launch",
+            "mainClass": "FindCircleNum",
+            "projectName": "leetcode_359ed258"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CheckInclusion",
+            "request": "launch",
+            "mainClass": "CheckInclusion",
+            "projectName": "leetcode_359ed258"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MonotoneIncreasingDigits",
+            "request": "launch",
+            "mainClass": "MonotoneIncreasingDigits",
+            "projectName": "leetcode_359ed258"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - ConvertBST",
             "request": "launch",
             "mainClass": "ConvertBST",

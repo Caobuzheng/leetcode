@@ -1,3 +1,14 @@
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+/*
+Accepted
+113/113 cases passed (158 ms)
+Your runtime beats 5.18 % of java submissions
+Your memory usage beats 95.17 % of java submissions (41.1 MB)
+this is bad... i used to many times
 /*
  * @lc app=leetcode.cn id=547 lang=java
  *
@@ -57,22 +68,121 @@
 // @lc code=start
 class Solution {
     public int findCircleNum(int[][] M) {
-        int n = M.length;
+        return FindCircleNum.findCircleNum(M);
+    }
+    
+}
+
+class FindCircleNum2 {
+    public static void main(String[] args) {
+        int[][] M = {{1,0,0,1},{0,1,1,0},{0,1,1,1},{1,0,1,1}}; // this is 1
+        System.err.println(findCircleNum(M));
+        // int[][] M2 = {{1,1,0},{1,1,1},{0,1,1}};
+        // System.err.println(findCircleNum(M2));
+    }
+
+    public static int findCircleNum(int[][] M) {
+        int m = M.length;
+        if(m==0) return 0;
+        int n = M[0].length;
         if(n==0) return 0;
-        int ans = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        for(int i = 0; i<n; i++) {
-            for(int j = i+1; j<n ;j++) {
+
+        for(int i=0;i<m;i++) {
+            for(int j=i+1;j<n;j++) {
                 if(M[i][j] == 1) {
-                    ans++;
+                    add(i, j, map);
                 }
             }
         }
-        return n-ans;
+        return ans;
     }
-    // 这个能跟矩阵挂钩么？感觉不行啊。理解不来！！！！交集的怎么处理啊。
-    private void markZero(int[][] M){
-        
+    public static void dfsMark(int[][] M, int m, int n) {
+        for(int i =0; i<M.length;i++) {
+            // 这肯定不对的。
+            M[i][n] = 1;
+            M[m][i] = 1;
+        }
+    }
+}
+
+
+class FindCircleNum {
+    public static void main(String[] args) {
+        int[][] M = {{1,0,0,1},{0,1,1,0},{0,1,1,1},{1,0,1,1}}; // this is 1
+        System.err.println(findCircleNum(M));
+        // int[][] M2 = {{1,1,0},{1,1,1},{0,1,1}};
+        // System.err.println(findCircleNum(M2));
+    }
+    public static int findCircleNum(int[][] M) {
+        int m = M.length;
+        if(m==0) return 0;
+        int n = M[0].length;
+        if(n==0) return 0;
+
+        Map<Integer, IndexSet> map = new HashMap<>();
+
+        // 这个错了的
+        for(int i=0;i<m;i++) {
+            for(int j=i+1;j<n;j++) {
+                if(M[i][j] == 1) {
+                    add(i, j, map);
+                }
+            }
+        }
+        // for(Map.Entry<Integer,IndexSet> entry : map.entrySet()) {
+        //     entry.
+        // }
+
+        for(int i=0; i<m;i++) {
+            add(i,i,map);
+        }
+        return Long.valueOf(map.values().stream().map(set->set.index).distinct().count()).intValue();
+    }
+    public static void add(int a, int b, Map<Integer, IndexSet> map) {
+        Set<Integer> newSet = new HashSet<>();
+        newSet.add(a);
+        newSet.add(b);
+        IndexSet indexSet = new IndexSet(Math.min(a,b));
+        indexSet.set = newSet;
+        if(!map.containsKey(a) && !map.containsKey(b)){
+            map.put(a, indexSet);
+            map.put(b, indexSet);
+        }else { // 新增一个
+            IndexSet more = null;
+            boolean tag = false;
+            if(map.containsKey(a)) {
+                more = map.get(a);
+            }
+            if(map.containsKey(b)) {
+                IndexSet more2 = map.get(b);;
+                if(more != null) {
+                    tag = true;
+                    // 合并下
+                    // 要更新下
+                    more2.index = Math.min(more.index ,more2.index);
+                    more2.set.addAll(more.set);
+                }
+                more = more2;
+            }
+            more.index = Math.min(more.index, Math.min(a, b));
+            newSet.addAll(more.set);
+            more.set = newSet;
+            if(tag) {
+                for(Integer i: newSet) {
+                    map.put(i, more);
+                }
+            }else {
+                map.put(a, more);
+                map.put(b, more);
+            }
+        }
+    }
+}
+class IndexSet {
+    public Integer index;// the Min val in the Set
+    public Set<Integer> set;
+    public IndexSet(int index) {
+        this.index = index;
     }
 }
 // @lc code=end

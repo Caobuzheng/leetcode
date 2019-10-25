@@ -36,11 +36,26 @@ class CalculateMinimumHP {
     }
 
     public static int calculateMinimumHP(int[][] dungeon) {
+        int m = dungeon.length;
+        if(m == 0) return 0;
+        int n = dungeon[0].length;
+        if(n == 0) return 0;
+        int min = Integer.MAX_VALUE;
+        for(int i = n-1;i>=0;i--) {
+            if(i<0) {
+                // 这个可以把前面的那个变成0。
+            } 
+        }
+        for(int i = n-1;i>=0;i--) {
+            // 先处理下最后一行的哈
+        }
+
+        // init it?
+       
         
         // how to dp it?
         // this one is hard??? unbelievable
-        // 这个是真的挺好的，得好好的整理思路才行的。
-        return 0;
+        return min;
     } 
 }
 // @lc code=end

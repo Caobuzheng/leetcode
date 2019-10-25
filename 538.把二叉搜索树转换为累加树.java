@@ -43,28 +43,25 @@
  * }
  */
 class Solution {
-    public TreeNode convertBST(TreeNode root) {
-        return ConvertBST.convertBST(root);
-    }
-}
-class ConvertBST {
-    public static void main(String[] args) {
-    }
     public static TreeNode convertBST(TreeNode root) {
         helper(root, 0);
         return root;
     }
-    public static void helper(TreeNode node, int more) {
-        if(node == null) return;
-        // ok.
-        node.val += more;
+
+    public static int helper(TreeNode node, int more) {
+        if(node == null) return 0;
+        int sum = 0; // sum
+        int left = 0;
+        int right = 0;
         if(node.right != null) {
-            helper(node.right, more);
-            node.val += node.right.val - more;
+            right = helper(node.right, more);
         }
         if(node.left != null) {
-            helper(node.left, node.val);
+            left = helper(node.left, more + right + node.val);
         }
+        sum = node.val + right + left;
+        node.val = node.val + right + more;
+        return sum;
     }
 }
 // @lc code=end

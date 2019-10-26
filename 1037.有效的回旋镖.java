@@ -46,12 +46,14 @@
 // @lc code=start
 class Solution {
     public boolean isBoomerang(int[][] points) {
-        // 就是个三角行呗
-        boolean a = points[0][1] * points[1][0] !=  points[0][0] * points[1][1]; 
-        boolean b = points[1][1] * points[2][0] !=  points[1][0] * points[2][1]; 
-        boolean c = points[0][1] * points[2][0] !=  points[0][0] * points[2][1]; 
-        return 
-            (a || b)&& (b||c) && (a||c);
+        if((points[1][1] - points[0][1]) == 0 &&  (points[1][0] - points[0][0]) ==0) return false;
+        if((points[2][1] - points[0][1]) == 0 &&  (points[2][0] - points[0][0]) ==0) return false;
+        if((points[2][1] - points[1][1]) == 0 &&  (points[2][0] - points[1][0]) ==0) return false;
+       
+        return  (points[1][1] - points[0][1])  * (points[2][0] - points[0][0]) 
+                    != 
+                (points[2][1] - points[0][1]) * (points[1][0]-points[0][0]);
+        
     }
 }
 // @lc code=end

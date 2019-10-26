@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BalancedString",
+            "request": "launch",
+            "mainClass": "BalancedString"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CountBattleships",
+            "request": "launch",
+            "mainClass": "CountBattleships"
+        }
+    ]
+}

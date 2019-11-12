@@ -20,7 +20,7 @@
 * 并查集
 * 堆
 * Hash表
-* C++ STL使用技巧
+* Collections使用技巧 java.util.* 里也有很多
 
 ## 搜索与图论 —— 常用代码模板3——搜索与图论
 * DFS与BFS

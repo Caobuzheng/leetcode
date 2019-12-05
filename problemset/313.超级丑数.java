@@ -1,11 +1,10 @@
-import java.util.PriorityQueue;
-
 /*
  * @lc app=leetcode.cn id=313 lang=java
  *
  * [313] 超级丑数
  */
 
+import java.util.*;
 // @lc code=start
 class Solution {
     public int nthSuperUglyNumber(int n, int[] primes) {
@@ -14,21 +13,24 @@ class Solution {
 }
 class Solution313 {
     public static void main(String[] args) {
-        int[] primes = {2,3,5};
-        int n = 2;
-        System.out.println(nthSuperUglyNumber(n, primes));
+        int[] primes = {2,7,13,19};
+        System.out.println(nthSuperUglyNumber(12, primes));
     }
+
     public static int nthSuperUglyNumber(int n, int[] primes) {
-        if(n<=1) return n;
-        PriorityQueue<Integer> queue = new PriorityQueue<>();
-        for(int i: primes) queue.add(i);
-        while(--n>1) {
-            // 啥？
-            int tmp = queue.poll();
-            System.out.println(tmp);
-            for(int i: primes) queue.add(tmp*i);
+        if(n == 1) return 1;
+        PriorityQueue<Long> queue= new PriorityQueue<>();
+        Set<Long> set = new HashSet<>();
+        for(int i: primes) queue.add((long)i);
+        Long tmp = queue.peek();
+        while(set.size()<n-1) {
+            tmp = queue.poll();
+            if(!set.contains(tmp)) {
+                set.add(tmp);
+                for(int i: primes) queue.add(tmp*i);
+            }
         }
-        return queue.poll();
+        return tmp.intValue();
     }
 }
 // @lc code=end

@@ -11,23 +11,48 @@ class Solution {
     }
 }
 class So1156 {
-    static int[] last;
-    static char[] chars;
-    static int max;
+
+    public static void main(String[] args) {
+        System.out.println(maxRepOpt1("ababa")); // 3
+        System.out.println(maxRepOpt1("aaabaaa"));// 6 
+        System.out.println(maxRepOpt1("aaabbaaa"));// 4
+        System.out.println(maxRepOpt1("aaaaaaa"));// 5
+        System.out.println(maxRepOpt1("abcdef"));// 1
+    }
+
     public static int maxRepOpt1(String text) {
-        last = new int[26];
-        chars = text.toCharArray();
-        max = 0;
-        for(int i = 0; i<chars.length; i++) {
-            last[chars[i] - 'a'] = i;
+        int[] total = new int[26];
+        char[] chars = text.toCharArray();
+        for(char c: chars) {
+            total[c-'a']++;
         }
-        int i = 1;
+        int index = 0;
         int next = 1;
         int count = 1;
-        for(;i<text.length();i++) {
-            // 这块就有点意思了的
-            if()
+        boolean fake = false;
+        int max = 0;
+        char c = chars[0];
+        while(index<chars.length-1) {
+           if(c != chars[index+1]) {
+               if(fake){
+                    max = Math.max(max, Math.min(count, total[c-'a']));           
+                    index = next;
+                    count = 1;
+                    c = chars[index];
+                    fake = false;
+               }else {
+                    fake = true;
+                    next = index+1;
+                    count++;
+                    index++;
+               }
+           }else {
+               count++;
+               index++;
+           }
         }
+        max = Math.max(max, Math.min(count, total[c-'a']));
+        return max;
     }
 }
 // @lc code=end

@@ -1,23 +1,45 @@
+import java.util.*;
 /*
  * @lc app=leetcode.cn id=1145 lang=java
  *
  * [1145] 二叉树着色游戏
  */
 
+import javax.swing.tree.TreeNode;
+
 // @lc code=start
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
 class Solution {
+
+    int left = 0;
+    int right = 0;
     public boolean btreeGameWinningMove(TreeNode root, int n, int x) {
-        // 这个比我想的有意思。不过似乎是没那么难的。。其实这个题给了很多优化的空间的。
+        left = 0;
+        right = 0;
+        int total = getCount(root, x);
+        int res = total - left - right -1;
+        return res > total/2 || left > total/2 || right > total /2;
     }
+
+    public int getCount(TreeNode node, int x) {
+        if(node == null) return 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(node);
+        int count = 0;
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            for(int i = 0; i< size; i++) {
+                TreeNode tmp = queue.poll();
+                if(tmp.left != null) queue.add(tmp.left);
+                if(tmp.right != null) queue.add(tmp.right);
+                if(tmp.val == x) {
+                    left = getCount(tmp.left , x);
+                    right = getCount(tmp.right, x);
+                }
+                count++;
+            }
+        }
+        return count;
+    } 
 }
 // @lc code=end
 

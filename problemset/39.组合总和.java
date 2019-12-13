@@ -8,47 +8,7 @@ import java.util.List;
  * @lc app=leetcode.cn id=39 lang=java
  *
  * [39] 组合总和
- *
- * https://leetcode-cn.com/problems/combination-sum/description/
- *
- * algorithms
- * Medium (67.03%)
- * Likes:    420
- * Dislikes: 0
- * Total Accepted:    41.8K
- * Total Submissions: 62.2K
- * Testcase Example:  '[2,3,6,7]\n7'
- *
- * 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
- * 
- * candidates 中的数字可以无限制重复被选取。
- * 
- * 说明：
- * 
- * 
- * 所有数字（包括 target）都是正整数。
- * 解集不能包含重复的组合。 
- * 
- * 
- * 示例 1:
- * 
- * 输入: candidates = [2,3,6,7], target = 7,
- * 所求解集为:
- * [
- * ⁠ [7],
- * ⁠ [2,2,3]
- * ]
- * 
- * 
- * 示例 2:
- * 
- * 输入: candidates = [2,3,5], target = 8,
- * 所求解集为:
- * [
- * [2,2,2,2],
- * [2,3,3],
- * [3,5]
- * ]
+ * ac
  * 
  */
 
@@ -66,23 +26,28 @@ class Solution39 {
             System.out.println(list.stream().map(String::valueOf).reduce((t1,t2)->t1+","+t2).get());
         }
     }
+
+    
+    
+    static List<List<Integer>> res;
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> res = new LinkedList<>();
+        res = new LinkedList<>();
+        if(candidates.length == 0) return res;
         Arrays.sort(candidates);
-        helper(candidates, target, 0, new LinkedList<>(), res);
+        help(candidates, target, 0, new LinkedList<>());
         return res;
     }
-    public static void helper(int[] candidates, int target, int lastIndex, LinkedList<Integer> list , List<List<Integer>> res) {
+    public static void help(int[] candidates, int target, int index, LinkedList<Integer> history) {
         if(target == 0) {
-            List<Integer> tmp = new ArrayList<>();
-            tmp.addAll(list);
-            res.add(tmp);
+            res.add(new LinkedList<>(history));
+        }else if(target < candidates[index]){
+            return;
         }
-        if(target < candidates[0]) return;
-        for(int i = lastIndex; i<candidates.length && candidates[i] <= target;i++ ){
-            list.addLast(candidates[i]);
-            helper(candidates, target-candidates[i], i, list, res);
-            list.removeLast();
+        for(int i = index; i<candidates.length; i++) {
+            if(candidates[i]>target) break;
+            history.add(candidates[i]);
+            help(candidates,target-candidates[i],i,history);
+            history.pollLast();
         }
     }
 }

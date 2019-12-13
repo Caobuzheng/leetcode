@@ -4,6 +4,7 @@ import java.util.Arrays;
  * @lc app=leetcode.cn id=495 lang=java
  *
  * [495] 提莫攻击
+ * AC, 显示中有最优解。十分的巧妙。用公交车问题解答的。
  */
 
 // @lc code=start

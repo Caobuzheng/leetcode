@@ -9,6 +9,7 @@ import java.util.stream.Collector;
  * @lc app=leetcode.cn id=31 lang=java
  *
  * [31] 下一个排列
+ * 本题可以再做一遍
  */
 
 // @lc code=start

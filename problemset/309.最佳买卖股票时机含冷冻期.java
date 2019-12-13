@@ -19,7 +19,7 @@ class Solution309 {
         int[] dp = new int[prices.length+1];
         dp[0] = 0;
         dp[1] = prices[1] - prices[0];
-        dp[2] = 
+        return 0;
     }
 }
 // @lc code=end

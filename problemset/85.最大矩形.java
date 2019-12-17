@@ -23,7 +23,6 @@ class Solution85 {
           
     }
     public static int maximalRectangle(char[][] matrix) {
-        // 
         return 0;
     }
 

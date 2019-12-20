@@ -7,7 +7,7 @@
 // @lc code=start
 class Solution {
     public int findLength(int[] A, int[] B) {
-        
+        // 感觉应该是dp.   
     }
 }
 // @lc code=end

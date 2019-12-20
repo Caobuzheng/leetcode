@@ -1,3 +1,5 @@
+import java.util.*;
+
 /*
  * @lc app=leetcode.cn id=659 lang=java
  *
@@ -20,9 +22,11 @@ class Solution659 {
         if(nums.length<3) return false;
         int count = -1;
         int c = nums[0];
-        // 这里就是有那么点绕了的。
+        // 1223345
+        // 123
+        Map<Integer, Integer> map = new HashMap<>();
         for(int i :nums) {
-
+            
         }
         return true;
     }

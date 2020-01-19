@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.*;
 
 /*
  * Accepted
@@ -20,33 +21,26 @@ class Solution {
 }
 class Solution416 {
     public static void main(String[] args) {
-        int[] nums = {1, 5, 11, 5};
-        int[] nums2 = {1, 2, 3, 5};
-        System.out.println(canPartition(nums));
-        System.out.println(canPartition(nums2));
+        System.out.println(canPartition(new int[] {1,2,5}));
+        System.out.println(canPartition(new int[] {1,5,11,5}));
+        System.out.println(canPartition(new int[] {1,2,3,5}));
     }
 
-    static boolean finded = false;
     public static boolean canPartition(int[] nums) {
-        finded = false;
-        int sum = Arrays.stream(nums).sum();
-        if((sum&1) == 1) return false;
-        Arrays.sort(nums);
-        canMatch(nums, nums.length-1, sum/2);
-        return finded;
-    }
-
-    public static void canMatch(int[] nums, int index, int target) {
-        if(finded) return;
-        if(target == 0) {
-            finded = true;
+        int sum = 0;
+        for(int i: nums) sum+=i;
+        if(sum%2 != 0) return false;
+        int target = sum/2;
+        boolean[] dp = new boolean[sum+1];
+        // 用个dp也是可以的啦。
+        dp[0] = true;
+        for(int num: nums) {
+            for(int i=target; i>=num; i--){
+                dp[i] = dp[i] || dp[i-num];
+            }
         }
-        // 这个是ac了。
-        for(int i = index; i>=0 && nums[i] <=target; i--) {
-            canMatch(nums, i - 1, target - nums[i]);
-        }
+        return dp[target];
     }
-
 }
 // @lc code=end
 

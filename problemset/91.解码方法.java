@@ -43,51 +43,41 @@
 // @lc code=start
 class Solution {
     public int numDecodings(String s) {
-        return NumDecodings.numDecodings(s);
+        return NumDecodingsDp.numDecodings(s);
     }
 }
 // 没写对，果然还是递归的比dp的好写。
 class NumDecodingsDp {
     public static void main(String[] args) {
-        System.out.println(numDecodings("110110213")); //3 
-        System.out.println(numDecodings("2341"));//2
+        // System.out.println(numDecodings("213")); //3 
+        // System.out.println(numDecodings("2341"));//2
+        // System.out.println(numDecodings("12"));//2
+        System.out.println(numDecodings("0"));//2
     }
+    // [1,1,0,0] -> 
     public static int numDecodings(String s) {
+        if(s.length() == 0) return 1;
         char[] chars = s.toCharArray();
-        int[] nums = new int[chars.length];
-        for(int i=0;i<nums.length;i++) {
-            nums[i] = chars[i] - '0';
-        }
-        int[] dp = new int[chars.length];
-        if(nums[0] == 0) {
-            return 0;
-        }
+        int[] dp = new int[chars.length+1];
         dp[0] = 1;
-        if(nums.length > 1) {
-            if(nums[1] + nums[0] <= 26 && nums[1] != 0) {
-                dp[1] = 2;
-            } else {
-                dp[1] = 1; 
+        if(chars[0] != '0') {
+            dp[1] = 1;
+        }
+        for(int i=1; i<chars.length;i++) {
+            if(chars[i] != '0') {
+                dp[i+1] += dp[i];
+            }
+            if(chars[i-1] != '0') {
+                int val = (chars[i-1] - '0') * 10 + chars[i] - '0';
+                if(val >0 && val <=26) {
+                    dp[i+1] += dp[i-1];
+                }
             }
         }
-        for(int i=2;i<nums.length;i++) {
-            if(nums[i] == 0 && nums[i-1] == 0) {
-                return 0;
-            } 
-            if(nums[i] == 0 || nums[i-1] == 0) {
-                dp[i] = dp[i-2];
-            }else if(nums[i] + nums[i-1] <= 26 && nums[i] != 0) {
-                dp[i] = dp[i-1] + dp[i-2];
-            }else {
-                // 30
-                dp[i] = dp[i-1];
-            }
-        }
-        return dp[dp.length-1];
+        return dp[chars.length];
     }
 }
 class NumDecodings {
-    // 或者说，这个是可以用DP的?
     public static void main(String[] args) {
         System.out.println(numDecodings("226"));
     }
